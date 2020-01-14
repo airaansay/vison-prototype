@@ -1,0 +1,146 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Google Cloud Vision Results</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css"
+	rel="stylesheet">
+
+</head>
+
+<style>
+.extracted_text {
+	width: 900px;
+	min-height: 300px;
+	font-family: "MyriadPro", Monaco, monospace;
+	/* background-color: red; */
+}
+
+textarea {
+	resize: none;
+}
+
+textarea.ta10em {
+	height: 10em;
+	text-align: left
+}
+
+.wrapper {
+	/*  margin-left: auto;
+  margin-right: auto; */
+	/*  margin-top: 20vh; */
+	text-align: left;
+	font-size: 15px;
+}
+
+textarea::-webkit-scrollbar {
+	width: 12px;
+	height: 500px text-align:left background-color: #F5F5F5;
+}
+
+textarea::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+	background-color: #4285F4;
+}
+</style>
+
+<body>
+	<br />
+	<div class="card" style="background-color: #D00149">
+		<div class="card-header"></div>
+	</div>
+
+	<div class="card" style="background-color: #E99A4F">
+		<div class="card-header">Google Cloud Vision API Prototype</div>
+
+	</div>
+
+	<br />
+	<div class="container" style="margin: 0px 200px 0px 200px">
+		<div class="card" style="width: 800px">
+			<div class="card-body">
+
+
+				<div class="card">
+					<div class="card-header">
+
+						<h5 class="card-title">
+							<i class='fa fa-magic'></i>Image Analysis Results
+						</h5>
+					</div>
+					<div class="card-body">
+
+						<div th:if="${annotations}">
+							<label>We think your image is...</label> <br />
+							<table class="table">
+								<tr>
+									<th>Description</th>
+									<th>Score</th>
+								</tr>
+								<tr th:each="entry : ${annotations}">
+									<td class="text-primary font-weight-bold">[[${entry.getDescription()}]]</td>
+									<td>[[${entry.getScore()}]]</td>
+								</tr>
+							</table>
+						</div>
+
+						<div th:if="${text}">
+							<!-- <label>Text found in image...</label> -->
+
+							<div class="wrapper">
+								<div class="form-group text-left">
+									<textarea style="height: 500px; width: 700px"
+										class=" extracted_text rounded-0"
+										id="exampleFormControlTextarea2" rows="5">
+						[[${text}]]
+		</textarea>
+								</div>
+							</div>
+
+
+							<!-- <div class="extracted_text">[[${text}]]</div> -->
+						</div>
+
+						<p style="align: center">
+							<img style="max-width: 500px" th:src="${imageUrl}" />
+						</p>
+
+
+
+					</div>
+				</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br />
+	<!-- Footer -->
+	<footer class="page-footer font-small"
+		style="background-color: #FFFFFF">
+
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">
+			© 2020 Copyright: <a href="http://localhost:8080"> ATCP IES -
+				Java</a>
+		</div>
+		<!-- Copyright -->
+
+	</footer>
+	<!-- Footer -->
+</body>
+</html>

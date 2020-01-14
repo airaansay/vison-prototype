@@ -1,0 +1,12 @@
+# Use the below property if using service account credential authentication
+#spring.cloud.gcp.credentials.location=file:src/main/resources/static/secret-key.json
+
+    
+spring:
+  cloud:
+    gcp:
+      credentials:
+        location: file:src/main/resources/static/secret-key.json
+        
+  application:
+    name: vision-api-prototype
